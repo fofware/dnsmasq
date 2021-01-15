@@ -1,0 +1,11 @@
+docker build -t jpillora/dnsmasq:latest .
+
+docker run --name dnsmasq -d -p 53:53/udp -p 5380:8080 -v "c:\dockervolumes\opt:/etc" --log-opt "max-size=100m" -e "HTTP_USER=foo" -e "HTTP_PASS=bar" --restart always jpillora/dnsmasq
+
+docker run --name dnsmasq -d -p 53:53/udp -v "c:\dockervolumes\config\dnsmasq.conf:/etc/dnsmasq.conf" --restart always mydnsmaq
+
+docker run -d --name bind9 -p 53:53 -p 53:53/udp -v "c:\dockervolumes\bind\:/etc/bind/" -v "c:\dockervolumes\bind\zones:/etc/bind/zones" resystit/bind9:latest
+
+
+docker run  -d --name bind9 --restart always -p 53:53 -p 53:53/udp -v "c:\dockervolumes\bind\:/et
+c/bind/" -v "c:\dockervolumes\bind\zones:/etc/bind/zones" resystit/bind9:latest
